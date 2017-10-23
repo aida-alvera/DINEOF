@@ -16,7 +16,7 @@ LIBDIR ?=
 
 # netCDF configuration
 
-NETCDF_CONFIG ?= nc-config
+NETCDF_CONFIG ?= nf-config
 NETCDF_INCDIR ?= $(INCDIR)
 NETCDF_LIBDIR ?= $(LIBDIR)
 NETCDF_LIB ?= -lnetcdf
