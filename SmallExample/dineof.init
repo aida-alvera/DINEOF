@@ -1,0 +1,132 @@
+!
+! INPUT File for dineof 2.0
+!
+! Lines starting with a ! or # are comments
+!
+
+
+! gappy data to fill by DINEOF. For several matrices, separate names with commas 
+! Example:  
+!          data = ['seacoos2005.avhrr','seacoos2005.chl']
+
+data = ['seacoos2005.avhrr']
+
+
+
+!--------------MASK FILE----------------------------------------------
+! Land-sea mask of the gappy data. 
+! Several masks can be especified, separated by commas:
+! Example : 
+!           mask = ['seacoos2005.avhrr.mask','seacoos2005.chl.mask']
+!
+! When no mask is especified (comment out the maskfile line), 
+!                      no land points are present in the initial file
+
+mask = ['seacoos2005.avhrr.mask']
+
+!---------------------------------------------------------------------
+
+
+
+
+
+time = 'dates.dat'
+alpha = 0.01
+numit = 3
+
+
+!
+! Sets the numerical variables for the computation of the required
+! singular values and associated modes.
+!
+! Give 'nev' the maximum number of modes you want to compute 
+
+nev = 5
+
+! Give 'neini' the minimum  number of modes you want to compute 
+
+neini = 1
+
+! Give 'ncv' the maximal size for the Krylov subspace 
+! (Do not change it as soon as ncv > nev+5) 
+! ncv must also be smaller than the temporal size of your matrix
+
+ncv = 10
+
+! Give 'tol' the treshold for Lanczos convergence 
+! By default 1.e-8 is quite reasonable 
+
+tol = 1.0e-8
+
+! Parameter 'nitemax' defining the maximum number of iteration allowed for the stabilisation of eofs obtained by the cycle ((eof decomposition <-> truncated reconstruction and replacement of missing data)). An automatic criteria is defined by the following parameter 'itstop' to go faster 
+
+nitemax = 300
+
+! Parameter 'toliter' is a precision criteria defining the threshold of automatic stopping of dineof iterations, once the ratio (rms of successive missing data reconstruction)/stdv(existing data) becomes lower than 'toliter'. 
+
+toliter = 1.0e-3
+
+! Parameter 'rec' for complete reconstruction of the matrix 
+! rec=1 will reconstruct all points; rec=0 only missing points
+
+rec = 1
+
+! Parameter 'eof' for writing the left and right modes of the
+!input matrix. Disabled by default. To activate, set to 1
+
+eof = 1
+
+! Parameter 'norm' to activate the normalisation of the input matrix
+!for multivariate case. Disabled by default. To activate, set to 1
+
+norm = 0
+
+! Output folder. Left and Right EOFs will be written here     
+!
+
+!Output = './'
+Output = 'Output/'
+
+!
+! user chosen cross-validation points, 
+! remove or comment-out the following entry if the cross-validation points are to be chosen 
+! internally
+!
+
+! clouds = 'crossvalidation.clouds'
+
+!
+! "results" contains the filenames of the filled data
+!
+
+!results = ['All_95_1of2.sst.filled']
+!results = ['Output/F2Dbelcolour_region_period_datfilled.gher']
+
+results = ['Output/seacoos2005.avhrr.filled']
+
+! seed to initialize the random number generator
+
+seed = 243435
+
+EOF.U = ['Output/eof.nc#Usst']
+EOF.V = 'Output/eof.nc#V'
+EOF.Sigma = 'Output/eof.nc#Sigma'
+
+
+!-------------------------!
+! cross-validation points !
+!-------------------------!
+
+!number_cv_points = 7000
+
+!cloud surface size in pixels 
+cloud_size = 500
+
+
+
+!cloud_mask = 'crossvalidation.mask'
+
+
+!
+! END OF PARAMETER FILE 
+!
