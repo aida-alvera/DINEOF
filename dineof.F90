@@ -108,10 +108,7 @@ program dineof
 
  if( presentInitValue(initfilename,'mask')) then
   call getInitValue(initfilename,'mask',maskfile)
-  write(stdout,*)'maskfile ',maskfile
  else 
-!  allocate(maskfile(size(sstfile)))
-!  maskfile = 'nomaskfile'
   write(stdout,*)'no maskfile',size(maskfile)
  endif
 
@@ -127,11 +124,6 @@ program dineof
 
  call getInitValue(initfilename,'seed',ipid) 
 
-if(associated(maskfile)) then
-write(stdout,*)'yes maskfile'
-else
-write(stdout,*)'nono maskfile'
-endif
 
  if (stdout.ne.6) then
    call getInitValue(initfilename,'logfile',logfile,default='dineof.out') 
@@ -195,9 +187,9 @@ endif
  !     Input(sstfile(s), maskfile(s),norma)
  !     Output(X,M,N,VALEX,mask,imax,jmax,first,fileMean,fileStd)
  !-------------------------------------------------------------------------------------
-write(*,*)'before readmatrix'
+
  call ReadMatrix(sstfile,X, M, N,VALEX,maskfile,norma,imax,jmax,first,fileMean,fileStd)
-write(*,*)'after readmatrix'
+
  !--------------------------------------------
  write(stdout,*) '***'
  write(stdout,*) 'Matrix loaded ... Land points extracted...'
@@ -332,7 +324,7 @@ write(*,*)'time file read'
  
  IMISST=IMISS+ICROSS
 
- if(IMISST.gt.(M*N)) stop'Not enough data' 
+ if(IMISST.gt.(M*N)) stop 'Not enough data' 
 
  !     ------------------------------------------------------
  !     Declare and initialise IEX(IMISST),JEX(IMISST)
@@ -372,11 +364,6 @@ write(*,*)'time file read'
 
  stdvini=sqrt(varini)
  sumVarIni = M * N * varini
-! write(stdout,*)'number of points ',M*N
-! write(stdout,*)'number of points non missing',count(X.ne.valex)
-! write(stdout,*)'energy ',sum(X**2,X.ne.valex)
-! write(stdout,*)'varini ',varini
-! write(stdout,*)'stdvini ',stdvini
 
  !-------------------------------------------------------------------------------
  ! Add pseudo missing data points for cross validation, but save the values into 
@@ -611,7 +598,6 @@ write(*,*)'time file read'
    write(stdout,400)P,valc(p),nitedone(p),valosc(p,nitedone(p))
 
    call flush(stdout,istat)
-!   call usave(trim(DirOutput)//'/valc.dat',valc,valex)   
 
 !new cross-validation error
 
@@ -862,7 +848,6 @@ call usave(trim(DirOutput)//'/CVpoints_initial.dat',XEX(IMISS+1:IMISST,0),valex)
      endif
 endif
 
-write(stdout,*) 'SCE filled matrix (valex eliminated)= ',sum(X**2,X.ne.valex)
 
 if (istrans) then
 

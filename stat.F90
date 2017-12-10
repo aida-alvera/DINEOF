@@ -54,5 +54,4 @@ subroutine stat(file,mask,mean,stddev)
 !  where(file.ne.valexNorm) fileNorm=(file-mean)/stddev
 !  where(file.eq.valexNorm) fileNorm=valexNorm
  
-write(*,*)'end subroutine stat'
 end subroutine stat

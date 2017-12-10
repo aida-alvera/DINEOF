@@ -15,7 +15,7 @@ FORT ?= gfortran
 DEBUG ?= on
 
 # DINEOF version
-VERSION ?= 3.0
+VERSION ?= 4.0
 STATIC ?= 
 
 # Example files are provided in the format "big endian". 
@@ -85,13 +85,6 @@ clean:
 
 distclean:
 	rm -f  $(OBJECTS) $(OBJECTSC) *.mod dineof #crossval
-
-
-release:
-	rm -rf /tmp/dineof-$(VERSION);\
-	svn export https://dineof.googlecode.com/svn/trunk /tmp/dineof-$(VERSION);\
-	tar -C /tmp/ -zcvf dineof-$(VERSION).tar.gz dineof-$(VERSION);\
-	rm -rf /tmp/dineof-$(VERSION)
 
 tarfile:
 	if [ -e dineof-$(VERSION).tar.gz ]; then  rm -i dineof-$(VERSION).tar.gz; fi

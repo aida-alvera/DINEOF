@@ -51,7 +51,7 @@ subroutine ReadMatrix(sstfile,matrix,m,n,valex,maskfile,norma,imax,jmax,first,fi
  
  call getarg(1,initfilename)
 
-write(stdout,*)'initfilename',initfilename
+write(stdout,*)'initfilename: ',initfilename
 
 !if( presentInitValue(initfilename,'mask')) then
 !if(maskfile = 'nomaskfile') then
@@ -155,13 +155,13 @@ write(stdout,*)'initfilename',initfilename
 
   m=sum(sea(:))
   allocate(matrix(m,nlines(1)))
-      write(*,*)'allocate'
+     
   do q=1,nbvars
 
     
      call uload(sstfile(q),file, valex)
      
- write(*,*)'end uload'
+
 !     where (file.eq.valex) file = valexc 
 
  do t=1,size(file,3)
@@ -173,14 +173,14 @@ write(stdout,*)'initfilename',initfilename
   enddo
 
 
-    write(*,*)'end uload2'
+   
      if( presentInitValue(initfilename,'mask')) then
        call uload(maskfile(q),mask,maskvalex)
      else
        allocate(mask(size(file,1),size(file,2)))
        mask = mask+1
      endif
-write(*,*)'end uload mask'
+
 
 !     where (mask.eq.0) mask = valexc
 
@@ -189,7 +189,7 @@ write(*,*)'end uload mask'
            if (mask(i,j).eq.0) mask(i,j)=valexc
         enddo
   enddo
-  write(*,*)'end loop'
+  
 
 
      !    -----------------------------------
@@ -208,7 +208,7 @@ write(*,*)'end uload mask'
        ! deallocate(file)
         
      end if
-      write(*,*)'end loop2'
+      
 
 
      !where(fileNorm.eq.9999) fileNorm=valexc 
@@ -220,7 +220,7 @@ write(*,*)'end uload mask'
      enddo
   enddo
 
-write(*,*)'end stats'
+
      ! where (spread(mask,3,nlines(q)).eq.valexc) file = valexc
 
      ! testN = count(file.ne.valexc)
@@ -256,10 +256,10 @@ write(*,*)'end stats'
            enddo
         enddo
      enddo
-write(*,*)'end'
+
      deallocate(file,mask)
 
-write(*,*)'end2'
+
 call flush(stdout,istat)
   !    -----------------------------------
   !     write mean and standard deviation

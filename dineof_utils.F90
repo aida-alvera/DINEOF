@@ -228,7 +228,8 @@ end subroutine
   !   _______________
 
 
-  call usave(trim(DirOutput)//'/DINEOF_diagnostics.nc#vlsng',s,valex)
+  !call usave(trim(DirOutput)//'/DINEOF_diagnostics.nc#vlsng',s,valex)
+  call usave(eofsfname,s,valex)
 
  
   !

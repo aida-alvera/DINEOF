@@ -75,7 +75,7 @@ STATIC ?=
 # NETCDF_INCDIR, NETCDF_LIBDIR and NETCDF_LIB are not used
 #==========================================================================
 
-#NETCDF_CONFIG ?= nc-config
+#NETCDF_CONFIG ?= nf-config
 
 #==========================================================================
 # This directory should contains a file usually called netcdf.inc and 
