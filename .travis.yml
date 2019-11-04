@@ -1,0 +1,25 @@
+language: c
+
+os:
+  - linux
+#  - osx
+
+
+notifications:
+  email: false
+
+addons:
+  apt: # apt-get for linux
+    packages:
+    - gfortran
+    - make
+    - libarpack2-dev
+    - libnetcdf-dev
+    - libnetcdff-dev
+
+script:
+  - make
+  - cd SmallExample; ../dineof dineof.init
+
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)
