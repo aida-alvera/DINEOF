@@ -1,6 +1,6 @@
 # DINEOF
 
-[![Build Status Linux](https://api.travis-ci.org/aida-alvera/DINEOF.svg?branch=master)](https://api.travis-ci.org/aida-alvera/DINEOF)
+[![Build Status Linux](https://travis-ci.org/aida-alvera/DINEOF.svg?branch=master)](https://travis-ci.org/aida-alvera/DINEOF)
 
 DINEOF is an EOF-based method to fill in missing data from geophysical fields, such as clouds in sea surface temperature. 
 
