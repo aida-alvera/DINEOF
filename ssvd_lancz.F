@@ -476,7 +476,9 @@ c        %--------------------------%
 c
          print *, ' '
          print *, ' Error with _saupd, info = ', info
-         print *, ' Check documentation in _saupd '
+         print *, ' Check documentation in dsaupd '
+         print *, ' https://www.caam.rice.edu/software/' //
+     &              'ARPACK/UG/node136.html'
          print *, ' '
 c
       else 
