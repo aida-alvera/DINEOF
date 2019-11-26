@@ -26,7 +26,7 @@ endif
 ifdef DEBUG
   F90FLAGS += -g -check all -traceback
 else
-  F90FLAGS += -vec-report0 -O3
+  F90FLAGS += -O3
 endif
 
 ifeq ($(PRECISION),double)
