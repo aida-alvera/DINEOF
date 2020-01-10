@@ -18,6 +18,7 @@ addons:
     - libnetcdff-dev
 
 script:
+  - cp config.mk.template config.mk
   - make
   - cd SmallExample; ../dineof dineof.init
 
