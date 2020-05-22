@@ -1,0 +1,38 @@
+name: Build master
+
+on: [push, pull_request]
+
+jobs:
+  build-ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev
+
+    - name: Configure
+      run: cp config.mk.template config.mk
+
+    - name: Compile
+      run: make
+
+  build-windows:
+
+    runs-on: windows-latest
+    steps:
+    - uses: numworks/setup-msys2@v1
+    - run: msys2do uname -a
+    - run: msys2do pacman -S mingw-w64-x86_64-gcc-fortran  mingw-w64-x86_64-make mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+    - run: msys2do wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
+    - run: |
+        msys2do tar -zxvf netcdf-fortran-4.4.4.tar.gz
+        msys2do cd netcdf-fortran-4.4.4
+        msys2do ./configure
+        msys2do make
+        msys2do make install
+
+    - run: msys2do make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip"
+
