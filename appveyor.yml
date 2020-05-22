@@ -22,11 +22,11 @@ install:
     - cmd: >-
         SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
 
-        pacman -S mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
+        pacman -S --needed --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
 
-        pacman -S mingw-w64-x86_64-openblas
+        pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
 
-        pacman -S mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
 
         wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
 
