@@ -25,7 +25,15 @@ jobs:
     steps:
     - uses: numworks/setup-msys2@v1
     - run: msys2do uname -a
-    - run: msys2do pacman -S mingw-w64-x86_64-gcc-fortran  mingw-w64-x86_64-make mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+
+    - name: Install compiler
+    - run: msys2do pacman -S mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
+
+    - name: Install dependencies
+    - run: msys2do pacman -S mingw-w64-x86_64-openblas
+    - run: msys2do pacman -S mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+
+    - name: Install NetCDF-Fortran
     - run: msys2do wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
     - run: |
         msys2do tar -zxvf netcdf-fortran-4.4.4.tar.gz
