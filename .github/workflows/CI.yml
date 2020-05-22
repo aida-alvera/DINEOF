@@ -46,6 +46,9 @@ jobs:
         msys2do make
         msys2do make install
 
+    - name: Configure
+      run: msys2do cp config.mk.template config.mk
+
     - name: Compile
       run: msys2do make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip"
 
