@@ -1,0 +1,38 @@
+environment:
+    matrix:
+    - COMPILER: msys2
+      PLATFORM: x64
+      MSYS2_ARCH: x86_64
+      MSYS2_DIR: msys64
+      MSYSTEM: MINGW64
+      BIT: 64
+
+
+platform:
+  - x64 # 64-bit
+
+
+branches:
+  only:
+    - master
+    - /release-.*/
+
+
+install:
+    - cmd: >-
+        SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
+        pacman -S mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
+        pacman -S mingw-w64-x86_64-openblas
+        pacman -S mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+        wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
+        tar -zxvf netcdf-fortran-4.5.2.tar.gz
+        cd netcdf-fortran-4.5.2
+        ./configure
+        make
+        make install
+
+build_script:
+    - cmd: >-
+        copy config.mk.template config.mk
+        make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip"
+
