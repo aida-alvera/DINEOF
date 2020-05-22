@@ -26,7 +26,7 @@ install:
 
         pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
 
-        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
 
         wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
 

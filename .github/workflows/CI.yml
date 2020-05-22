@@ -35,7 +35,7 @@ jobs:
       run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
 
     - name: Install dependencies
-      run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-blas mingw-w64-x86_64-szip
+      run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
 
     - name: Install NetCDF-Fortran
       run: |
