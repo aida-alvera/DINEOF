@@ -40,8 +40,6 @@ install:
  
         make
 
-        make check
-
         make install
 
         cd ..
@@ -55,8 +53,6 @@ install:
         bash -c './configure --disable-shared  --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz"'
 
         make
-
-        make check
 
         make install
 
