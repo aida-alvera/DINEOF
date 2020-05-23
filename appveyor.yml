@@ -48,9 +48,11 @@ build_script:
 
         ls
 
+        bash -c 'nc-config --all'
+
         bash -c 'nf-config --all'
 
         cp config.mk.template config.mk
 
-        bash -c 'make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs)"'
+        bash -c 'make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) $(nc-config --libs)"'
 
