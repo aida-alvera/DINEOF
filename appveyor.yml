@@ -28,6 +28,8 @@ install:
 
         pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
 
+        pacman -S --needed --noconfirm mingw-w64-x86_64-hdf5
+
         wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.4.tar.gz
 
         tar -zxf netcdf-c-4.7.4.tar.gz
