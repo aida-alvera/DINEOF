@@ -26,15 +26,31 @@ install:
 
         pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
 
-        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-netcdf mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
+        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
+
+        wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.4.tar.gz
+
+        tar -zxf netcdf-c-4.7.4.tar.gz
+
+        cd netcdf-c-4.7.4/
+
+        bash -c './configure --disable-shared --disable-dap  --disable-utilities --prefix=/mingw64/'
+ 
+        make
+
+        make check
+
+        make install
+
+        cd ..
 
         wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
 
-        tar -zxvf netcdf-fortran-4.5.2.tar.gz
+        tar -zxf netcdf-fortran-4.5.2.tar.gz
 
         cd netcdf-fortran-4.5.2
 
-        bash -c ./configure
+        bash -c './configure --disable-shared  --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz"'
 
         make
 
@@ -56,5 +72,4 @@ build_script:
 
         cp config.mk.template config.mk
 
-        bash -c 'make OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) $(nc-config --libs) -lhdf5_hl -lhdf5 -lszip -lcurl "'
-
+        bash -c 'make STATIC=on OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
