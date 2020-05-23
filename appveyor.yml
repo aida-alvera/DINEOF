@@ -54,5 +54,5 @@ build_script:
 
         cp config.mk.template config.mk
 
-        bash -c 'make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) $(nc-config --libs)"'
+        bash -c 'make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) $(nc-config --libs) $(nc-config --static)"'
 
