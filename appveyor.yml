@@ -42,7 +42,7 @@ install:
 
 build_script:
     - cmd: >-
-        copy config.mk.template config.mk
+        cp config.mk.template config.mk
 
         make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip"
 
