@@ -48,9 +48,9 @@ build_script:
 
         ls
 
-        nf-config --all
+        bash -c nf-config --all
 
         cp config.mk.template config.mk
 
-        make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip -lcurl -lz"
+        make OS=mingw STATIC=on LIBS="-L/usr/lib -llapack -larpack -lopenblas -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 -lz -lszip -lcurl -lopenssl -lpthreads -lz"
 
