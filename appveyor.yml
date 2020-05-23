@@ -38,6 +38,8 @@ install:
 
         make
 
+        make check
+
         make install
 
         cd ..
