@@ -52,7 +52,7 @@ install:
 
         bash -c './configure --enable-shared --enable-static   --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/'
 
-        bash -c 'rm fortran/nf_nc.f90; touch fortran/nf_nc.f90"
+        bash -c 'rm fortran/nf_nc.f90; touch fortran/nf_nc.f90'
 
         make
 
@@ -72,4 +72,4 @@ build_script:
 
         cp config.mk.template config.mk
 
-        bash -c 'make STATIC=off OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
+        bash -c 'make OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
