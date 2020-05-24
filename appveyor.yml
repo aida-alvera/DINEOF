@@ -36,7 +36,7 @@ install:
 
         cd netcdf-c-4.7.4/
 
-        bash -c './configure --disable-shared --disable-dap  --disable-utilities --prefix=/mingw64/'
+        bash -c './configure --enable-shared --enable-static  --disable-dap  --disable-utilities --prefix=/mingw64/'
  
         make
 
@@ -50,7 +50,9 @@ install:
 
         cd netcdf-fortran-4.5.2
 
-        bash -c './configure --disable-shared  --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/'
+        bash -c './configure --enable-shared --enable-static   --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/'
+
+        bash -c 'rm fortran/nf_nc.f90; touch fortran/nf_nc.f90"
 
         make
 
@@ -70,4 +72,4 @@ build_script:
 
         cp config.mk.template config.mk
 
-        bash -c 'make STATIC=on OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
+        bash -c 'make STATIC=off OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
