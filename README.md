@@ -19,10 +19,6 @@ If you want to use the binaries provided, you can find them at:
 Please follow instruction on the [help pages](http://modb.oce.ulg.ac.be/DINEOF), taking into account that you need to install gfortran, make, Arpack and Netcdf as follows (for Ubuntu and Debian):
 
 ```bash
-sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev 
-```
-For Ubuntu 16.04 or later you also need:
-
-```bash
-sudo apt-get install libnetcdff-dev 
+sudo apt-get update
+sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev 
 ```
