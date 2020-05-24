@@ -23,7 +23,7 @@ sudo apt-get update
 sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev git
 ```
 
-Compile with
+Compile with:
 
 ```
 git clone https://github.com/Aida-Alvera/DINEOF
@@ -31,6 +31,8 @@ cd DINEOF/
 cp config.mk.template config.mk
 make
 ```
+
+You might want to adapt `config.mk`, but the provided template `config.mk.template` should work with ubuntu as-is.
 
 ## Windows
 
@@ -44,7 +46,17 @@ Install "Windows Subsystem for Linux"
 
 ### Cygwin
 
-* Use setup.exe to install the dependencies
+* Use setup.exe to install the dependencies: gcc-fortran, make, libarpack-devel, liblapack-devel, libnetcdf-fortran-devel, git
+
+
+```
+git clone https://github.com/Aida-Alvera/DINEOF
+cd DINEOF/
+cp config.mk.template config.mk
+make
+```
+
+For Cygwin, `OS` in `config.mk` should be `Linux` (default).
 
 
 
