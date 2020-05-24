@@ -56,7 +56,7 @@ install:
 
         cd netcdf-fortran-4.5.2
 
-        bash -c './configure --disable-shared --enable-static   --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/'
+        bash -c './configure --disable-shared --enable-static   --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/  FCFLAGS="-w -fallow-argument-mismatch -O2"'
         
         make
 
