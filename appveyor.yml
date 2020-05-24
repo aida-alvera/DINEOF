@@ -23,7 +23,9 @@ install:
         SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
 
         pacman -Syu --noconfirm
-        
+
+        pacman -Su --noconfirm
+
         pacman -S --needed --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
 
         pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
