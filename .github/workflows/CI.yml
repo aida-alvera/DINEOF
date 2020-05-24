@@ -52,7 +52,7 @@ jobs:
         msys2do wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
         msys2do tar -zxvf netcdf-fortran-4.5.2.tar.gz
         msys2do cd netcdf-fortran-4.5.2
-        msys2do ./configure --disable-shared  --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/
+        msys2do ./configure --disable-shared  --disable-dependency-tracking LIBS='-lhdf5_hl -lhdf5 -lm -lz' --prefix=/mingw64/
         msys2do make
         msys2do make install
 
