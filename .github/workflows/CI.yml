@@ -29,7 +29,7 @@ jobs:
     - run: msys2do uname -a
 
     - name: Install compiler
-      run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
+      run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make tar
 
     - name: Install OPENBLAS
       run: msys2do pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
