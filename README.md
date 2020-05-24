@@ -12,13 +12,39 @@ Help pages on how to install and compile DINEOF can be found [here](http://modb.
 
 
 # Installation
-## Binaries
-If you want to use the binaries provided, you can find them at: 
 
-## Installation from source
+## Linux
+
+### Installation from source
 Please follow instruction on the [help pages](http://modb.oce.ulg.ac.be/DINEOF), taking into account that you need to install gfortran, make, Arpack and Netcdf as follows (for Ubuntu and Debian):
 
 ```bash
 sudo apt-get update
-sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev 
+sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev git
 ```
+
+Compile with
+
+```
+git clone https://github.com/Aida-Alvera/DINEOF
+cd DINEOF/
+cp config.mk.template config.mk
+make
+```
+
+## Windows
+
+### Windows Subsystem for Linux
+
+Install "Windows Subsystem for Linux"
+
+* Follow the instructions at https://aka.ms/wslinstall
+* Install "Ubuntu" from the Windows App Store
+* Follow the Ubuntu instructions
+
+### Cygwin
+
+* Use setup.exe to install the dependencies
+
+
+
