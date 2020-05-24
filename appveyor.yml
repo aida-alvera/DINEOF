@@ -17,6 +17,9 @@ branches:
     - master
     - /release-.*/
 
+artifacts:
+  - path: dineof.exe
+    name: dineof.exe
 
 install:
     - cmd: >-
@@ -77,3 +80,7 @@ build_script:
         cp config.mk.template config.mk
 
         bash -c 'make OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
+
+        bash -c '(cd SmallExample/; ../dineof.exe dineof.init)'
+
+      
