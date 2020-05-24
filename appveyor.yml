@@ -70,4 +70,4 @@ build_script:
 
         cp config.mk.template config.mk
 
-        bash -c 'make STATIC=on OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblasp $(nf-config --flibs) -lszip"'
+        bash -c 'make STATIC=on OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
