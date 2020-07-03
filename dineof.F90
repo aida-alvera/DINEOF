@@ -623,7 +623,8 @@ write(*,*)'time file read'
 
    mytol=(1./100.)*(valc(p)-valc(p-1))/valc(p)
 
-
+   !stop after three increasing CV values
+   
    if ((P.gt.(neini+2))) then
      if ((VALC(P).gt.VALC(P-1)) .and.(VALC(P-1).gt.VALC(P-2)) .and. (VALC(P-2).gt.VALC(P-3))) then
       exit

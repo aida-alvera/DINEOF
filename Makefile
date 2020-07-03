@@ -16,7 +16,7 @@ DEBUG ?= on
 
 # DINEOF version
 VERSION ?= 4.0
-STATIC ?= 
+
 
 # Example files are provided in the format "big endian". 
 # Do not change the FORMAT variable, if you want to run the test case "SmallExample".

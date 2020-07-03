@@ -9,7 +9,7 @@
 ! Example:  
 !          data = ['seacoos2005.avhrr','seacoos2005.chl']
 
-data = ['seacoos2005.avhrr']
+data = ['alboranSST_small.nc#SST']
 
 
 
@@ -22,7 +22,7 @@ data = ['seacoos2005.avhrr']
 ! When no mask is especified (comment out the maskfile line), 
 !                      no land points are present in the initial file
 
-mask = ['seacoos2005.avhrr.mask']
+mask = ['alboranSST_small.nc#mask']
 
 !---------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ mask = ['seacoos2005.avhrr.mask']
 
 
 
-time = 'dates.dat'
+time = 'alboranSST_small.nc#time'
 alpha = 0.01
 numit = 3
 
@@ -102,7 +102,7 @@ Output = 'Output/'
 !results = ['All_95_1of2.sst.filled']
 !results = ['Output/F2Dbelcolour_region_period_datfilled.gher']
 
-results = ['Output/seacoos2005.avhrr.filled']
+results = ['Output/dineof_alboranSST.nc#SST']
 
 ! seed to initialize the random number generator
 

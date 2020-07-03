@@ -1,4 +1,4 @@
-function outliers_field=dineof_outliers(dataini,datarec,mask,crossval,mu2_eff,vlsng,lftvec,N)
+function [outliers_field,indi_field,indi_field_cl,indi_field_med]=dineof_outliers(dataini,datarec,mask,crossval,mu2_eff,vlsng,lftvec,N)
 
 %function outliers_field=dineof_outliers(dataini,datarec,mask,crossval,mu2_eff,vlsng,lftvec,N)
 %

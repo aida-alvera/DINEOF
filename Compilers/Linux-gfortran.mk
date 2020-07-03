@@ -35,3 +35,7 @@ endif
 ifeq ($(FORMAT),big_endian)
   F90FLAGS += -fconvert=big-endian -frecord-marker=4
 endif  
+
+ifdef STATIC
+  F90FLAGS += -static
+endif
