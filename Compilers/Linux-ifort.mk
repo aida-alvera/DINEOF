@@ -6,12 +6,12 @@
 F90C ?= ifort
 F90FLAGS ?= -implicitnone
 LD ?= $(F90C)
-LDFLAGS ?= 
+LDFLAGS ?=
 
 # avoid stack size problem
 # http://software.intel.com/en-us/articles/intel-fortran-compiler-increased-stack-usage-of-80-or-higher-compilers-causes-segmentation-fault/
 
-F90FLAGS += -heap-arrays 
+F90FLAGS += -heap-arrays
 PROFILING_F90FLAGS ?= -p
 PROFILING_LDFLAGS ?= -p
 
@@ -26,7 +26,7 @@ endif
 ifdef DEBUG
   F90FLAGS += -g -check all -traceback
 else
-  F90FLAGS += -vec-report0 -O3 
+  F90FLAGS += -O3
 endif
 
 ifeq ($(PRECISION),double)
@@ -35,5 +35,4 @@ endif
 
 ifeq ($(FORMAT),big_endian)
   F90FLAGS += -convert big_endian
-endif  
-
+endif

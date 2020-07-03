@@ -1,0 +1,86 @@
+environment:
+    matrix:
+    - COMPILER: msys2
+      PLATFORM: x64
+      MSYS2_ARCH: x86_64
+      MSYS2_DIR: msys64
+      MSYSTEM: MINGW64
+      BIT: 64
+
+
+platform:
+  - x64 # 64-bit
+
+
+branches:
+  only:
+    - master
+    - /release-.*/
+
+artifacts:
+  - path: dineof.exe
+    name: dineof.exe
+
+install:
+    - cmd: >-
+        SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
+
+        pacman -Syu --noconfirm
+
+        pacman -Su --noconfirm
+
+        pacman -S --needed --noconfirm mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-make
+
+        pacman -S --needed --noconfirm mingw-w64-x86_64-openblas
+
+        pacman -S --needed --noconfirm mingw-w64-x86_64-arpack mingw-w64-x86_64-lapack mingw-w64-x86_64-szip
+
+        pacman -S --needed --noconfirm mingw-w64-x86_64-hdf5
+
+        gcc --version
+        
+        wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-c-4.7.4.tar.gz
+
+        tar -zxf netcdf-c-4.7.4.tar.gz
+
+        cd netcdf-c-4.7.4/
+
+        bash -c './configure --disable-shared --enable-static  --disable-dap  --disable-utilities --prefix=/mingw64/'
+ 
+        make
+
+        make install
+
+        cd ..
+
+        wget https://www.unidata.ucar.edu/downloads/netcdf/ftp/netcdf-fortran-4.5.2.tar.gz
+
+        tar -zxf netcdf-fortran-4.5.2.tar.gz
+
+        cd netcdf-fortran-4.5.2
+
+        bash -c './configure --disable-shared --enable-static   --disable-dependency-tracking LIBS="-lhdf5_hl -lhdf5 -lm -lz" --prefix=/mingw64/  FCFLAGS="-w -fallow-argument-mismatch -O2"'
+        
+        make
+
+        make install
+
+        cd ..
+
+build_script:
+    - cmd: >-
+        pwd
+
+        ls
+
+        bash -c 'nc-config --all'
+
+        bash -c 'nf-config --all'
+
+        cp config.mk.template config.mk
+
+        bash -c 'make OS=mingw LIBS="-L/usr/lib -llapack -larpack -lopenblas $(nf-config --flibs) -lszip"'
+
+        bash -c '(cd SmallExample/; ../dineof.exe dineof.init)'
+
+      
