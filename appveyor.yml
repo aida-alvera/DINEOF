@@ -25,7 +25,7 @@ install:
     - cmd: >-
         SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
 
-        pacman -Syu --noconfirm
+        yes | pacman -Syu --noconfirm
 
         pacman -Su --noconfirm
 
