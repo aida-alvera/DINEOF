@@ -21,11 +21,19 @@ artifacts:
   - path: dineof.exe
     name: dineof.exe
 
+# new MSYS2
+# https://www.msys2.org/news/#2020-06-29-new-packagers
 install:
     - cmd: >-
         SET "PATH=C:\%MSYS2_DIR%\%MSYSTEM%\bin;C:\%MSYS2_DIR%\usr\bin;%PATH%"
 
-        yes | pacman -Syu --noconfirm
+        curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+
+        curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+
+        pacman -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+
+        pacman -Syu --noconfirm
 
         pacman -Su --noconfirm
 
