@@ -13,6 +13,7 @@ include config.mk
 OS ?= Linux
 FORT ?= gfortran
 DEBUG ?= on
+OPENMP ?= on
 
 # DINEOF version
 VERSION ?= 4.0
