@@ -545,11 +545,15 @@ write(*,*)'time file read'
      
      VAL = 0
 
+!$OMP PARALLEL
+!$OMP DO
      do K=1,IMISST 
        DIFF=X(IEX(K),JEX(K))-Xlastit(IEX(K),JEX(K)) 
        VAL=VAL+DIFF*DIFF
        Xlastit(IEX(K),JEX(K))=X(IEX(K),JEX(K)) 
      end do   
+!$OMP END DO
+!$OMP END PARALLEL
 
      VAL=sqrt(VAL/FLOAT(IMISST))/stdvini      
  
