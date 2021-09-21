@@ -10,7 +10,9 @@ For more information on how DINEOF works, please refer to [Alvera-Azcarate et al
 # Help pages
 Help pages on how to install and compile DINEOF can be found [here](http://modb.oce.ulg.ac.be/DINEOF).
 
-[FAQ](./docs/FAQ.md)
+* [Reporting a problem](./docs/problems.md)
+* [Troubleshooting](./docs/troubleshooting.md)
+* [FAQ](./docs/FAQ.md)
 
 
 # Installation
