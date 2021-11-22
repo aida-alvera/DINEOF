@@ -103,3 +103,14 @@ You get the following error when you run the small example.
 Fortran runtime error: Integer overflow when calculating the amount of memory to allocate.
 ```
 Note that the data files of the small example are in "big endian". You have to leave the format to "big_endian" in the Makefile to run the small example. You can only use another format when you create yourself the data set.
+
+
+###  Compilation fails with `could not open netcdf.inc`
+
+Make sure to install the *NetCDF Fortran development package*. It is called `libnetcdff-dev` on Debian/Ubuntu (note the 2nd `f`) or `netcdf-fortran-devel` on Fedora/Red Hat/Centos/OpenSuse .
+
+For example, you can install it with the following command on Debian/Ubuntu:
+
+```bash
+sudo apt install libnetcdff-dev
+```
