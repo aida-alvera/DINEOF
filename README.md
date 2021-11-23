@@ -19,7 +19,7 @@ For more information on how DINEOF works, please refer to [Alvera-Azcarate et al
 ## Linux
 
 ### Installation from source
-Please follow instruction on the [help pages](http://modb.oce.ulg.ac.be/DINEOF), taking into account that you need to install gfortran, make, Arpack and NetCDF as follows (for Ubuntu and Debian):
+You need to install gfortran, make, Arpack and NetCDF as follows (for Ubuntu and Debian):
 
 ```bash
 sudo apt-get update
