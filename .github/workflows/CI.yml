@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev
+      run: sudo apt update && sudo apt-get install gfortran make libarpack2-dev libnetcdf-dev libnetcdff-dev
 
     - name: Configure
       run: cp config.mk.template config.mk

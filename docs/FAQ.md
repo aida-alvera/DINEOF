@@ -5,7 +5,7 @@
 If you are not needing to exploit all features of the compiled Fortran code, some wrappers or implementations in popular analysis software tools can be exploited:
 
 * There is an R code available but not controlled, validated or maintained by our group: http://menugget.blogspot.be/2012/10/dineof-data-interpolating-empirical.html#uds-search-results
-* See also DINEOF implemented in EOFimputation of metR : [1]
+* See also DINEOF implemented in EOFimputation of metR : https://rdrr.io/github/eliocamp/metR/man/ImputeEOF.html
 * Then there is an online version for use with standard satellite data: http://www.dineof.net/
 * A matlab wrapper can be found here https://svn.oss.deltares.nl/repos/openearthtools/trunk/matlab/applications/+dineof/
 * There also seems to be an ArcGIS implementation: http://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=1897232
