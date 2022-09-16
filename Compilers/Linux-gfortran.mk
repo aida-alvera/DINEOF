@@ -38,4 +38,5 @@ endif
 
 ifdef STATIC
   F90FLAGS += -static
+  LDFLAGS += -static
 endif

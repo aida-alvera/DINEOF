@@ -201,8 +201,8 @@ program dineof
  call flush(stdout,istat)
  
 
- !--------Read time if B_DIFF option is activated in ppdef.h
-#ifdef B_DIFF
+ !--------Read time if temporal filter option is activated (alpha>0)
+
  
   if(alpha.ne.0) then
 write(*,*)'reading time file',timefile
@@ -234,7 +234,7 @@ write(*,*)'time file read'
    enddo 
   endif   
   
-#endif
+
  !-------------------------------------------------------------------------------------
 
  call flush(stdout,istat)
@@ -474,7 +474,7 @@ write(*,*)'time file read'
 
  call cpu_time(t2)
 
- write(stdout,800)' Time (in seconds) for 1 EOF mode calculation in DINEOF',t2-t1
+ write(stdout,800)' Time (in minutes) for 1 EOF mode calculation in DINEOF',(t2-t1)/60
  write(stdout,*)
 
  ! VALSVD: should give value at point I,J for P modes 
@@ -811,7 +811,7 @@ call usave(trim(DirOutput)//'/CVpoints_initial.dat',XEX(IMISS+1:IMISST,0),valex)
  write(stdout,*)
  write(stdout,801)'number of eigenvalues retained for the reconstruction        ',P
  write(stdout,800)'expected error calculated by cross-validation ',valc(P)
- write(stdout,800)'total time (in seconds) in lanczos process ', t3-t1
+ write(stdout,800)'total time (in minutes) in lanczos process ', (t3-t1)/60
  write(stdout,*)
  write(stdout,*)'Now writing data...'
  write(stdout,*)
@@ -898,7 +898,7 @@ endif
 800 format(a55,f10.4)
 801 format(a54,i3)
 802 format(a34,i35)
-803 format(a26,f5.2,a31,i3)
+803 format(a26,f6.4,a31,i3)
 
  write(stdout,*)
  write(stdout,*)'...done!'
