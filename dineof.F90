@@ -895,7 +895,7 @@ endif
 400 format(i7,f20.4,i19,e23.4)
 600 format(a14,a15,i11,a8,i11,a2,f6.2,a2)
 700 format(a35,i25,a3,i6)
-800 format(a55,f10.4)
+800 format(a55,f15.4)
 801 format(a54,i3)
 802 format(a34,i35)
 803 format(a26,f6.4,a31,i3)
