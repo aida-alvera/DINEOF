@@ -1,4 +1,4 @@
-function dineof_cvp_nc(fname,vbe,maskfname,outdir,nbclean)
+function dineof_cvp_nc(fname,vbe,maskfname,mvbe,outdir,nbclean)
 %
 %function dineof_cvp(fname,maskfname,outdir,nbclean)
 % Extracts clouds from file 'fname' and adds them to the 'nbclean'
@@ -25,8 +25,8 @@ function dineof_cvp_nc(fname,vbe,maskfname,outdir,nbclean)
 %
 
 
-  SST = ncread(fname,vbe,[1,1,1],[Inf,Inf,60]);
-mask = gread(maskfname);
+  SST = ncread(fname,vbe);%,[1,1,1],[Inf,Inf,60]
+mask = ncread(maskfname,mvbe);
 
 for k=1:size(SST,3)
   tmp = SST(:,:,k);
