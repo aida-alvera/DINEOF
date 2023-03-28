@@ -27,6 +27,10 @@ OS ?= Linux
 
 FORT ?= gfortran
 
+# OpenMP support
+
+OPENMP ?= on
+
 #==========================================================================
 #  Machine format, can be either big_endian, little_endian or native machine
 #  format. YOUR CHOICE MUST BE CONSITENT WITH THE WAY YOU CREATE THE INPUT
