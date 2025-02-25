@@ -29,13 +29,13 @@ function dineof_cvp(fname,maskfname,outdir,nbclean)
 file,varname = split(fname,"#");
 @show file 
 ds = Dataset(String(file));
-tmp = ds[String(varname)][:];
+tmp = ds[String(varname)][:,:,:];
 SST  = nomissing(tmp,NaN);
 close(ds)
 
 mfile,mvarname=split(maskfname,"#");
 ds = Dataset(String(mfile));
-mask = ds[String(mvarname)][:];
+mask = ds[String(mvarname)][:,:];
 close(ds)
 
 #SST
