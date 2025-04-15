@@ -24,102 +24,102 @@ function dineof_cvp(fname,maskfname,outdir,nbclean)
     Sea Surface Temperature. Ocean Modelling, 9:325-346, 2005.
 
 """
-function dineof_cvp(fname,maskfname,outdir,nbclean)
+function dineof_cvp(fname, maskfname, outdir, nbclean)
 
-file,varname = split(fname,"#");
-@show file 
-ds = Dataset(String(file));
-tmp = ds[String(varname)][:,:,:];
-SST  = nomissing(tmp,NaN);
-close(ds)
+    file, varname = split(fname, "#")
+    @show file
+    ds = Dataset(String(file))
+    tmp = ds[String(varname)][:, :, :]
+    SST = nomissing(tmp, NaN)
+    close(ds)
 
-mfile,mvarname=split(maskfname,"#");
-ds = Dataset(String(mfile));
-mask = ds[String(mvarname)][:,:];
-close(ds)
+    mfile, mvarname = split(maskfname, "#")
+    ds = Dataset(String(mfile))
+    mask = ds[String(mvarname)][:, :]
+    close(ds)
 
-#SST
-#mask = gread(maskfname);
+    #SST
+    #mask = gread(maskfname);
 
-for k=1:size(SST,3)
-  tmp = SST[:,:,k];
-  tmp[mask .== 0] .= NaN;
-  SST[:,:,k] = tmp;
-end
+    for k = 1:size(SST, 3)
+        tmp = SST[:, :, k]
+        tmp[mask.==0] .= NaN
+        SST[:, :, k] = tmp
+    end
 
-nbland = sum( mask[:] .== 0 );
-mmax = sum( mask[:] .== 1 );
+    nbland = sum(mask[:] .== 0)
+    mmax = sum(mask[:] .== 1)
 
-cloudcov = (sum(sum(isnan.(SST),dims=2),dims=1) .- nbland)/mmax;
-cloudcov = cloudcov[:];
-
-
-clean = sortperm(cloudcov);
-clean = clean[1:nbclean];
-
-N = length(cloudcov);
-
-index = floor.(Int,N * rand(nbclean,1)).+1;
-
-while (any(index .== clean))
-  index = floor.(Int,N * rand(nbclean,1)).+1;
-end
-
-#to be checked /~isnan
-SST2 = copy(SST);
-SST2[:,:,clean] =  SST[:,:,clean] ./ .!isnan.(SST[:,:,index]);
-SST2[isinf.(SST2)] .= NaN;
-
-imax = size(SST,1);
-jmax = size(SST,2);
+    cloudcov = (sum(sum(isnan.(SST), dims = 2), dims = 1) .- nbland) / mmax
+    cloudcov = cloudcov[:]
 
 
-mindex = zeros(Int,imax,jmax);
-iindex = zeros(Int,mmax);
-jindex = zeros(Int,mmax);
+    clean = sortperm(cloudcov)
+    clean = clean[1:nbclean]
 
-m=0;
-for i=1:imax    
-  for j=1:jmax
-    if (mask[i,j] == 1)
-      m = m+1;
-      mindex[i,j] = m;
-      iindex[m] = i;
-      jindex[m] = j;
-    end 
-  end 
-end 
+    N = length(cloudcov)
 
+    index = floor.(Int, N * rand(nbclean, 1)) .+ 1
 
+    while (any(index .== clean))
+        index = floor.(Int, N * rand(nbclean, 1)) .+ 1
+    end
 
-indexex = findall(isnan.(SST2) .& .!isnan.(SST));
-#iex,jex,kex = ind2sub(size(SST2),indexex);
+    #to be checked /~isnan
+    SST2 = copy(SST)
+    SST2[:, :, clean] = SST[:, :, clean] ./ .!isnan.(SST[:, :, index])
+    SST2[isinf.(SST2)] .= NaN
 
-nbpoints = length(indexex)
-clouds_indexes = zeros(nbpoints,2);
-
-for l=1:nbpoints
-  iex = CartesianIndices(size(SST2))[indexex[l]] 
-  clouds_indexes[l,1] = mindex[iex[1],iex[2]];
-  clouds_indexes[l,2] = iex[3];
-end  
-
-cloudcov2 = (sum(sum(isnan.(SST2),dims=2),dims=1) .- nbland)/m;
-cloudcov2 = cloudcov2[:];
-
-nbgood = sum(.!isnan.(SST[:]));
-nbgood2 = sum(.!isnan.(SST2[:]));
-
-println("$(100*(nbgood-nbgood2)/nbgood) % of cloud cover added")
+    imax = size(SST, 1)
+    jmax = size(SST, 2)
 
 
-output = Dataset(joinpath(outdir,"clouds_index.nc"),"c");
-defDim(output,"nbpoints",size(clouds_indexes,1))
-defDim(output,"index",size(clouds_indexes,2))
+    mindex = zeros(Int, imax, jmax)
+    iindex = zeros(Int, mmax)
+    jindex = zeros(Int, mmax)
 
-ncCloud = defVar(output,"clouds_index",Int64,("nbpoints","index"));
-ncCloud[:] = clouds_indexes;
+    m = 0
+    for i = 1:imax
+        for j = 1:jmax
+            if (mask[i, j] == 1)
+                m = m + 1
+                mindex[i, j] = m
+                iindex[m] = i
+                jindex[m] = j
+            end
+        end
+    end
 
-close(output)
+
+
+    indexex = findall(isnan.(SST2) .& .!isnan.(SST))
+    #iex,jex,kex = ind2sub(size(SST2),indexex);
+
+    nbpoints = length(indexex)
+    clouds_indexes = zeros(nbpoints, 2)
+
+    for l = 1:nbpoints
+        iex = CartesianIndices(size(SST2))[indexex[l]]
+        clouds_indexes[l, 1] = mindex[iex[1], iex[2]]
+        clouds_indexes[l, 2] = iex[3]
+    end
+
+    cloudcov2 = (sum(sum(isnan.(SST2), dims = 2), dims = 1) .- nbland) / m
+    cloudcov2 = cloudcov2[:]
+
+    nbgood = sum(.!isnan.(SST[:]))
+    nbgood2 = sum(.!isnan.(SST2[:]))
+
+    println("$(100*(nbgood-nbgood2)/nbgood) % of cloud cover added")
+
+
+    output = Dataset(joinpath(outdir, "clouds_index.nc"), "c")
+    defDim(output, "nbpoints", size(clouds_indexes, 1))
+    defDim(output, "index", size(clouds_indexes, 2))
+
+    ncCloud = defVar(output, "clouds_index", Int64, ("nbpoints", "index"))
+    ncCloud[:] = clouds_indexes
+
+    close(output)
 
 end
